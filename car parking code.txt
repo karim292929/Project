@@ -1,0 +1,113 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Car {
+public:
+    string licensePlate;
+    
+    Car(string plate) {
+        licensePlate = plate;
+    }
+};
+
+class ParkingLot {
+private:
+    int capacity;
+    vector<Car> parkedCars;
+    
+public:
+    ParkingLot(int size) {
+        capacity = size;
+    }
+    
+    bool parkCar(string plate) {
+        if (parkedCars.size() < capacity) {
+            Car newCar(plate);
+            parkedCars.push_back(newCar);
+            cout << "Car with plate " << plate << " parked successfully." << endl;
+            return true;
+        } else {
+            cout << "Parking lot full. Cannot park car." << endl;
+            return false;
+        }
+    }
+    
+    bool removeCar(string plate) {
+        for (int i = 0; i < parkedCars.size(); i++) {
+            if (parkedCars[i].licensePlate == plate) {
+                parkedCars.erase(parkedCars.begin() + i);
+                cout << "Car with plate " << plate << " removed successfully." << endl;
+                return true;
+            }
+        }
+        cout << "Car with plate " << plate << " not found." << endl;
+        return false;
+    }
+    
+    void displayParkedCars() {
+        if (parkedCars.empty()) {
+            cout << "No cars parked currently." << endl;
+        } else {
+            cout << "Currently parked cars:" << endl;
+            for (auto car : parkedCars) {
+                cout << "- " << car.licensePlate << endl;
+            }
+        }
+    }
+    
+    void availableSlots() {
+        cout << "Available slots: " << (capacity - parkedCars.size()) << "/" << capacity << endl;
+    }
+};
+
+int main() {
+    int size;
+    cout << "Enter parking lot capacity: ";
+    cin >> size;
+    
+    ParkingLot lot(size);
+    
+    int choice;
+    string plate;
+    
+    do {
+        cout << "\n--- Car Parking System Menu ---" << endl;
+        cout << "1. Park Car" << endl;
+        cout << "2. Remove Car" << endl;
+        cout << "3. Show Parked Cars" << endl;
+        cout << "4. Show Available Slots" << endl;
+        cout << "0. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        
+        switch(choice) {
+            case 1:
+                cout << "Enter car license plate: ";
+                cin >> plate;
+                lot.parkCar(plate);
+                break;
+            case 2:
+                cout << "Enter car license plate to remove: ";
+                cin >> plate;
+                lot.removeCar(plate);
+                break;
+            case 3:
+                lot.displayParkedCars();
+                break;
+            case 4:
+                lot.availableSlots();
+                break;
+            case 0:
+                cout << "Exiting Car Parking System." << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+        
+    } while (choice != 0);
+    
+    return 0;
+}
