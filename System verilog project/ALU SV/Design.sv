@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module Design(
     input logic [3:0] a,b,
     output logic [7:0] y,
