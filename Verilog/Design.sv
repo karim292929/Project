@@ -2,7 +2,7 @@ module vending_machine (
     input clk,
     input reset,
     input [1:0] coin,   // 2'b01 = ₹5, 2'b10 = ₹10
-    output reg product
+    output reg product 
 );
 
     // State Encoding
