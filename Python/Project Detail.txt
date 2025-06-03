@@ -1,0 +1,15 @@
+This Python script is a comparison and data extraction/reporting tool, specifically designed for semiconductor testing or test data analysis workflows. It performs the following high-level tasks:
+
+ - Compare two text files (like logs before and after Sort-1 or Sort-2 test flows).
+
+ - Highlight and document the differences line-by-line in an Excel report.
+
+ -Extract and analyze related data from an MDUT log and an Excel TRD file.
+
+ -Generate a detailed, color-formatted Excel report showing:
+
+     -Line differences
+
+     -MDUT register mappings
+
+     -Matched TRD test names
